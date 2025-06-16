@@ -1,6 +1,6 @@
 import Fastify, { fastify } from "fastify";
 import FastifyWebsocket from "@fastify/websocket";
-import FastifyStatic from "@fastify/static";
+// import FastifyStatic from "@fastify/static";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -19,10 +19,10 @@ function broadcast(message) {
 }
 
 await server.register(FastifyWebsocket);
-await server.register(FastifyStatic, {
-  root: path.join(__dirname, "public"),
-  prefix: "/",
-});
+// await server.register(FastifyStatic, {
+//   root: path.join(__dirname, "public"),
+//   prefix: "/",
+// });
 
 server.addHook("preValidation", async function (req, reply) {
   if (req.routeOptions.url === "/chat" && !req.query.username) {
